@@ -6,6 +6,7 @@ function initialize(){
     thirdPileRockCount = 3;
     computerPileChoice = 0;
     unkComment ="Hello, it is your turn";
+    randomNum = 0;
     rocksInFirstPile = document.getElementById("pile_one_count");           
     rocksInSecondPile = document.getElementById("pile_two_count");           
     rocksInThirdPile = document.getElementById("pile_three_count");
@@ -43,8 +44,8 @@ function rockRemoval(pile, removalAmount){
         }
     }
     turn = "computer";
-    computerTurn();
     display();
+    computerTurn();   
 }
    
 function display(){
@@ -55,6 +56,7 @@ function display(){
 }
 
 function computerTurn(){
+    randomNum = randomPile();
     unkComment = "It is my turn";
     if (firstPileRockCount > secondPileRockCount && firstPileRockCount > thirdPileRockCount){
         computerPileChoice = 1;
@@ -65,6 +67,40 @@ function computerTurn(){
     else if (thirdPileRockCount > secondPileRockCount && thirdPileRockCount > firstPileRockCount){
         computerPileChoice = 3;
     }
+    else if (firstPileRockCount == secondPileRockCount && firstPileRockCount > thirdPileRockCount){
+        if (randomNum <=.5 ){
+            computerPileChoice = 1;
+        }
+        else{
+            computerPileChoice = 1;
+        }
+                 
+    }
+    else if (thirdPileRockCount == secondPileRockCount && thirdPileRockCount > firstPileRockCount){
+        if (randomNum <=.5 ){
+            computerPileChoice = 2;
+        }
+        else{
+            computerPileChoice = 3;
+        }
+                  
+    }
+    else if (thirdPileRockCount == firstPileRockCount && thirdPileRockCount > secondPileRockCount){   
+        if (randomNum <=.5 ){
+            computerPileChoice = 1;
+        }
+        else{
+            computerPileChoice = 3;
+        }         
+    }
     rockRemoval(computerPileChoice, 1);
     turn = "player";
+    unkComment = "It is your turn";
+    display();
+}
+function randomPile(){
+    return Math.random();
+}
+function turnSwitch() {
+    
 }
