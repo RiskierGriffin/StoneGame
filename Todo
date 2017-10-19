@@ -1,6 +1,2 @@
-find a way to have a win/lose thing happen:
- After each round (player's and cavemen's), you must check winning conditions. 
- If there are no stones remaining in any of the piles, the last player to go has lost the game.
-
- For some reason, it always says the comp loses 
- Prob an error in lossCheck() or nextTurn();
+Make it ~~sparkly~~
+Try and figure out a way for it to look nice CSS just isn't ur thing
