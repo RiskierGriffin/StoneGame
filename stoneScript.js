@@ -1,6 +1,5 @@
 //Allan Tenenbaum
 function initialize(){
-    canEndTurn = false;
     turn = "player";
     firstPileRockCount = 3;
     secondPileRockCount = 3;
