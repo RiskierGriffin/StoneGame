@@ -1,5 +1,6 @@
 //Allan Tenenbaum
 function initialize(){
+    canEndTurn = false;
     turn = "player";
     firstPileRockCount = 3;
     secondPileRockCount = 3;
@@ -15,15 +16,19 @@ function initialize(){
     display();           
 }
 function nextRound(pile, removalAmount){
-    rockRemoval(pile, removalAmount);
     turn = "player";
+    rockRemoval(pile, removalAmount);
     lossCheck();
-    computerTurn();
-    turn = "computer";
-    lossCheck();
+    if(loser == "none"){
+        computerTurn();
+        lossCheck();
+       
+    }
     display();
+    
 }
 function rockRemoval(pile, removalAmount){
+    canEndTurn = false;
     if (pile == 1){
         newfirstPileRockCount = firstPileRockCount - removalAmount;
         if (newfirstPileRockCount < 0){
@@ -99,7 +104,9 @@ function computerTurn(){
         }         
     }
     rockRemoval(computerPileChoice, 1);
+    turn = "computer";
 }
+
 function randomPile(){
     return Math.random();
 }
@@ -107,9 +114,9 @@ function lossCheck() {
     if (firstPileRockCount == 0 && secondPileRockCount == 0 && thirdPileRockCount == 0){
         loser = turn;
         if (loser == "player"){
-            unkComment = "Hahahaha you lost!!! I WIN I WIN I WIN YAY";
+            unkComment = "HAHAHAHA YOU LOST!!! I WIN I WIN I WIN YAY";
         }
-        else if (loser == "computer"){
+        else if( loser == "computer"){
             unkComment = "Oh. I lost.... I'll win next game I bet";
         }        
     }
