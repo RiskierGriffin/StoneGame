@@ -1,5 +1,7 @@
 //Allan Tenenbaum
 function initialize(){
+    gameStatus = true;
+    validChoice = false;
     turn = "player";
     firstPileRockCount = 3;
     secondPileRockCount = 3;
@@ -15,35 +17,39 @@ function initialize(){
     display();           
 }
 function nextRound(pile, removalAmount){
-    turn = "player";
-    rockRemoval(pile, removalAmount);
-    lossCheck();
-    if(loser == "none"){
-        computerTurn();
+    if (gameStatus == true){    
+        turn = "player";
+        rockRemoval(pile, removalAmount);
         lossCheck();
-       
+        if(loser == "none"){
+            computerTurn();
+            lossCheck();
+        
+        }
     }
-    display();
-    
+        display();       
 }
 function rockRemoval(pile, removalAmount){
-    canEndTurn = false;
     if (pile == 1){
         newfirstPileRockCount = firstPileRockCount - removalAmount;
         if (newfirstPileRockCount < 0){
+            validChoice = false;
             newfirstPileRockCount = firstPileRockCount;
         }
         else{
+            validChoice = true;
             firstPileRockCount = newfirstPileRockCount;
         }
     }
     else if (pile == 2){
         newSecondPileRockCount = secondPileRockCount - removalAmount;
         if (newSecondPileRockCount < 0){
+            validChoice = false;
             newSecondPileRockCount = secondPileRockCount;
         }
         else{
-        secondPileRockCount = newSecondPileRockCount;
+            validChoice = true;
+            secondPileRockCount = newSecondPileRockCount;
         }
     }
     else if (pile == 3){
@@ -111,13 +117,14 @@ function randomPile(){
 }
 function lossCheck() {
     if (firstPileRockCount == 0 && secondPileRockCount == 0 && thirdPileRockCount == 0){
+        gameStatus = false;
         loser = turn;
         if (loser == "player"){
             unkComment = "HAHAHAHA YOU LOST!!! I WIN I WIN I WIN YAY";
         }
         else if( loser == "computer"){
             unkComment = "Oh. I lost.... I'll win next game I bet";
-        }        
+        }       
     }
     else{
         unkComment = "It is your turn";

@@ -1,2 +1,5 @@
 Make it ~~sparkly~~
 Try and figure out a way for it to look nice CSS just isn't ur thing
+If player makes invalid turn, CPU proceeds anyways
+If game ends, player can still click on stuff and make himself lose
+editing test
